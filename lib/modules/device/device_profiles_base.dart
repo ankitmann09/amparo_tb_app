@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:thingsboard_app/l10n/messages.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thingsboard_app/constants/assets_path.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
@@ -69,8 +68,7 @@ class RefreshDeviceCounts {
 class AllDevicesCard extends TbContextWidget {
   final RefreshDeviceCounts refreshDeviceCounts;
 
-  AllDevicesCard(TbContext tbContext, this.refreshDeviceCounts, {super.key})
-      : super(tbContext);
+  AllDevicesCard(super.tbContext, this.refreshDeviceCounts, {super.key});
 
   @override
   State<StatefulWidget> createState() => _AllDevicesCardState();
@@ -278,8 +276,7 @@ class _AllDevicesCardState extends TbContextState<AllDevicesCard> {
 class DeviceProfileCard extends TbContextWidget {
   final DeviceProfileInfo deviceProfile;
 
-  DeviceProfileCard(TbContext tbContext, this.deviceProfile, {super.key})
-      : super(tbContext);
+  DeviceProfileCard(super.tbContext, this.deviceProfile, {super.key});
 
   @override
   State<StatefulWidget> createState() => _DeviceProfileCardState();
@@ -303,7 +300,7 @@ class _DeviceProfileCardState extends TbContextState<DeviceProfileCard> {
     }
   }
 
-  _countDevices() {
+  void _countDevices() {
     activeDevicesCount = EntityQueryApi.countDevices(
       tbClient,
       deviceType: widget.deviceProfile.name,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thingsboard_app/l10n/messages.dart';
 import 'package:thingsboard_app/core/auth/noauth/presentation/widgets/endpoint_name_widget.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/usecases/user_details_usecase.dart';
 import 'package:thingsboard_app/locator.dart';
@@ -16,7 +15,7 @@ import 'package:thingsboard_app/utils/ui/tb_text_styles.dart';
 import 'package:thingsboard_app/utils/ui/ui_utils.dart';
 
 class MorePage extends TbContextWidget {
-  MorePage(TbContext tbContext, {super.key}) : super(tbContext);
+  MorePage(super.tbContext, {super.key});
 
   @override
   State<StatefulWidget> createState() => _MorePageState();

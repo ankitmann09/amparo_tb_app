@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/modules/alarm/alarms_base.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
@@ -9,8 +8,7 @@ import 'package:thingsboard_app/utils/ui/tb_text_styles.dart';
 class AlarmCard extends TbContextWidget {
   final AlarmInfo alarm;
 
-  AlarmCard(TbContext tbContext, {super.key, required this.alarm})
-      : super(tbContext);
+  AlarmCard(super.tbContext, {super.key, required this.alarm});
 
   @override
   State<StatefulWidget> createState() => _AlarmCardState();

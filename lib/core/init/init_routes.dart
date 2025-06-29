@@ -1,6 +1,5 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
@@ -13,7 +12,7 @@ import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 import 'init_app.dart';
 
 class DirectLoginRedirectPage extends StatelessWidget {
-  const DirectLoginRedirectPage(this.tbContext, {Key? key}) : super(key: key);
+  const DirectLoginRedirectPage(this.tbContext, {super.key});
   final TbContext tbContext;
 
   @override
@@ -29,7 +28,7 @@ class DirectLoginRedirectPage extends StatelessWidget {
 }
 
 class DirectLoginInitApp extends TbPageWidget {
-  DirectLoginInitApp(TbContext tbContext, {Key? key}) : super(tbContext, key: key);
+  DirectLoginInitApp(super.tbContext, {super.key});
 
   @override
   State<StatefulWidget> createState() => _DirectLoginInitAppState();
@@ -66,7 +65,7 @@ class _DirectLoginInitAppState extends TbPageState<DirectLoginInitApp> {
 }
 
 class InitRoutes extends TbRoutes {
-  InitRoutes(TbContext tbContext) : super(tbContext);
+  InitRoutes(super.tbContext);
 
   late final initHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, dynamic> params) {

@@ -7,7 +7,6 @@ import 'package:thingsboard_app/l10n/messages.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
@@ -63,8 +62,7 @@ final Map<TwoFaProviderType, TwoFactorAuthProviderLoginData>
 };
 
 class TwoFactorAuthenticationPage extends TbPageWidget {
-  TwoFactorAuthenticationPage(TbContext tbContext, {super.key})
-      : super(tbContext);
+  TwoFactorAuthenticationPage(super.tbContext, {super.key});
 
   @override
   State<StatefulWidget> createState() => _TwoFactorAuthenticationPageState();

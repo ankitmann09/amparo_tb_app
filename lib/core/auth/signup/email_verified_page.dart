@@ -3,7 +3,6 @@ import 'package:thingsboard_app/l10n/messages.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thingsboard_app/constants/assets_path.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
@@ -11,9 +10,8 @@ import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 class EmailVerifiedPage extends TbPageWidget {
   final String _emailCode;
 
-  EmailVerifiedPage(TbContext tbContext, {super.key, required String emailCode})
-      : _emailCode = emailCode,
-        super(tbContext);
+  EmailVerifiedPage(super.tbContext, {super.key, required String emailCode})
+      : _emailCode = emailCode;
 
   @override
   State<StatefulWidget> createState() => _EmailVerifiedPageState();
@@ -129,7 +127,7 @@ class _EmailVerifiedPageState extends TbPageState<EmailVerifiedPage> {
     );
   }
 
-  _activateAndGetCredentials(BuildContext context) async {
+  Future<void> _activateAndGetCredentials(BuildContext context) async {
     try {
       _loginResponse =
           await tbClient.getSignupService().activateUserByEmailCode(
@@ -152,7 +150,7 @@ class _EmailVerifiedPageState extends TbPageState<EmailVerifiedPage> {
     }
   }
 
-  _login() {
+  void _login() {
     tbClient.setUserFromJwtToken(
       _loginResponse!.token,
       _loginResponse!.refreshToken,

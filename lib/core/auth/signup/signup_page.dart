@@ -12,13 +12,12 @@ import 'package:thingsboard_app/core/auth/login/bloc/bloc.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
 import 'package:thingsboard_app/core/auth/oauth2/app_secret_provider.dart';
 import 'package:thingsboard_app/core/auth/signup/signup_field_widget.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 
 class SignUpPage extends TbPageWidget {
-  SignUpPage(TbContext tbContext, {super.key}) : super(tbContext);
+  SignUpPage(super.tbContext, {super.key});
 
   @override
   State<StatefulWidget> createState() => _SignUpPageState();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thingsboard_app/l10n/messages.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/modules/device/devices_base.dart';
 import 'package:thingsboard_app/modules/device/devices_list.dart';
@@ -12,12 +11,12 @@ class DevicesListPage extends TbContextWidget {
   final bool searchMode;
 
   DevicesListPage(
-    TbContext tbContext, {
+    super.tbContext, {
     super.key,
     this.deviceType,
     this.active,
     this.searchMode = false,
-  }) : super(tbContext);
+  });
 
   @override
   State<StatefulWidget> createState() => _DevicesListPageState();

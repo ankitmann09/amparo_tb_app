@@ -1,4 +1,3 @@
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
 import 'package:thingsboard_app/core/entity/entities_list.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
@@ -8,9 +7,9 @@ import 'tenants_base.dart';
 class TenantsList extends BaseEntitiesWidget<Tenant, PageLink>
     with TenantsBase, ContactBasedBase, EntitiesListStateBase {
   TenantsList(
-    TbContext tbContext,
-    PageKeyController<PageLink> pageKeyController, {
+    super.tbContext,
+    super.pageKeyController, {
     super.key,
     searchMode = false,
-  }) : super(tbContext, pageKeyController, searchMode: searchMode);
+  }) : super(searchMode: searchMode);
 }

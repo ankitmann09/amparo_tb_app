@@ -1,7 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/device/devices_main_page.dart';
 import 'package:thingsboard_app/modules/device/devices_page.dart';
 
@@ -42,7 +41,7 @@ class DeviceRoutes extends TbRoutes {
     },
   );
 
-  DeviceRoutes(TbContext tbContext) : super(tbContext);
+  DeviceRoutes(super.tbContext);
 
   @override
   void doRegisterRoutes(router) {

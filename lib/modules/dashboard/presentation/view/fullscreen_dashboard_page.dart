@@ -120,7 +120,7 @@ class _FullscreenDashboardPageState
     super.dispose();
   }
 
-  _onCanGoBack(bool canGoBack) {
+  void _onCanGoBack(bool canGoBack) {
     showBackValue.value = canGoBack;
   }
 }

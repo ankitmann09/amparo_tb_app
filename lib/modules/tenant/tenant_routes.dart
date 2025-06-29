@@ -1,7 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 
 import 'tenant_details_page.dart';
 import 'tenants_page.dart';
@@ -20,7 +19,7 @@ class TenantRoutes extends TbRoutes {
     },
   );
 
-  TenantRoutes(TbContext tbContext) : super(tbContext);
+  TenantRoutes(super.tbContext);
 
   @override
   void doRegisterRoutes(router) {

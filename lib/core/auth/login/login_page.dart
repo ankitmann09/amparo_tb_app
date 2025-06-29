@@ -15,7 +15,6 @@ import 'package:thingsboard_app/core/auth/login/bloc/auth_events.dart';
 import 'package:thingsboard_app/core/auth/login/bloc/auth_states.dart';
 import 'package:thingsboard_app/core/auth/login/choose_region_screen.dart';
 import 'package:thingsboard_app/core/auth/login/region.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/utils/ui/tb_text_styles.dart';
@@ -24,7 +23,7 @@ import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 import 'login_page_background.dart';
 
 class LoginPage extends TbPageWidget {
-  LoginPage(TbContext tbContext, {super.key}) : super(tbContext);
+  LoginPage(super.tbContext, {super.key});
 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
@@ -581,7 +580,7 @@ class _LoginPageState extends TbPageState<LoginPage>
                   ),
                 )
                 .values
-                .toList(),
+                ,
             const SizedBox(width: 8),
             Expanded(
               child: OutlinedButton(

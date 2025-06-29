@@ -1,7 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/audit_log/audit_logs_page.dart';
 
 class AuditLogsRoutes extends TbRoutes {
@@ -12,7 +11,7 @@ class AuditLogsRoutes extends TbRoutes {
     },
   );
 
-  AuditLogsRoutes(TbContext tbContext) : super(tbContext);
+  AuditLogsRoutes(super.tbContext);
 
   @override
   void doRegisterRoutes(router) {

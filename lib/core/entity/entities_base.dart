@@ -197,7 +197,7 @@ class PageLinkController extends PageKeyController<PageLink> {
   @override
   PageLink nextPageKey(PageLink pageKey) => pageKey.nextPageLink();
 
-  onSearchText(String searchText) {
+  void onSearchText(String searchText) {
     value.pageKey.page = 0;
     value.pageKey.textSearch = searchText;
     notifyListeners();
@@ -218,7 +218,7 @@ class TimePageLinkController extends PageKeyController<TimePageLink> {
   @override
   TimePageLink nextPageKey(TimePageLink pageKey) => pageKey.nextPageLink();
 
-  onSearchText(String searchText) {
+  void onSearchText(String searchText) {
     value.pageKey.page = 0;
     value.pageKey.textSearch = searchText;
     notifyListeners();
@@ -231,11 +231,11 @@ abstract class BaseEntitiesWidget<T, P> extends TbContextWidget
   final PageKeyController<P> pageKeyController;
 
   BaseEntitiesWidget(
-    TbContext tbContext,
+    super.tbContext,
     this.pageKeyController, {
     this.searchMode = false,
     super.key,
-  }) : super(tbContext);
+  });
 
   @override
   Widget? buildHeading(BuildContext context) => searchMode

@@ -1,6 +1,5 @@
 import 'package:fluro/fluro.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/more/more_page.dart';
 
 class MoreRoutes extends TbRoutes {
@@ -10,7 +9,7 @@ class MoreRoutes extends TbRoutes {
     },
   );
 
-  MoreRoutes(TbContext tbContext) : super(tbContext);
+  MoreRoutes(super.tbContext);
 
   @override
   void doRegisterRoutes(router) {

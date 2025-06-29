@@ -8,7 +8,6 @@ import 'package:thingsboard_app/core/auth/signup/email_verified_page.dart';
 import 'package:thingsboard_app/core/auth/signup/privacy_policy.dart';
 import 'package:thingsboard_app/core/auth/signup/signup_page.dart';
 import 'package:thingsboard_app/core/auth/signup/terms_of_use.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 
 import 'login/login_page.dart';
 import 'signup/email_verification_page.dart';
@@ -64,7 +63,7 @@ class AuthRoutes extends TbRoutes {
     },
   );
 
-  AuthRoutes(TbContext tbContext) : super(tbContext);
+  AuthRoutes(super.tbContext);
 
   @override
   void doRegisterRoutes(router) {

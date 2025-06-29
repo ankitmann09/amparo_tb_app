@@ -9,13 +9,13 @@ abstract class RefreshableWidget extends Widget {
 
 abstract class TbContextStatelessWidget extends StatelessWidget
     with HasTbContext {
-  TbContextStatelessWidget(TbContext tbContext, {Key? key}) : super(key: key) {
+  TbContextStatelessWidget(TbContext tbContext, {super.key}) {
     setTbContext(tbContext);
   }
 }
 
 abstract class TbContextWidget extends StatefulWidget with HasTbContext {
-  TbContextWidget(TbContext tbContext, {Key? key}) : super(key: key) {
+  TbContextWidget(TbContext tbContext, {super.key}) {
     setTbContext(tbContext);
   }
 }
@@ -52,7 +52,7 @@ mixin TbMainState {
 }
 
 abstract class TbPageWidget extends TbContextWidget {
-  TbPageWidget(TbContext tbContext, {Key? key}) : super(tbContext, key: key);
+  TbPageWidget(super.tbContext, {super.key});
 }
 
 abstract class TbPageState<W extends TbPageWidget> extends TbContextState<W>
@@ -86,8 +86,7 @@ abstract class TbPageState<W extends TbPageWidget> extends TbContextState<W>
 class TextContextWidget extends TbContextWidget {
   final String text;
 
-  TextContextWidget(TbContext tbContext, this.text, {super.key})
-      : super(tbContext);
+  TextContextWidget(super.tbContext, this.text, {super.key});
 
   @override
   State<StatefulWidget> createState() => _TextContextWidgetState();

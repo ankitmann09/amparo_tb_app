@@ -1,7 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
-import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/utils/ui/qr_code_scanner.dart';
 import 'package:thingsboard_app/utils/ui/tb_recaptcha.dart';
 
@@ -27,7 +26,7 @@ class UiUtilsRoutes extends TbRoutes {
     },
   );
 
-  UiUtilsRoutes(TbContext tbContext) : super(tbContext);
+  UiUtilsRoutes(super.tbContext);
 
   @override
   void doRegisterRoutes(router) {
