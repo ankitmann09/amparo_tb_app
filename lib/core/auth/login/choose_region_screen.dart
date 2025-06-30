@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:thingsboard_app/core/auth/login/region.dart';
 import 'package:thingsboard_app/core/auth/login/region_widget.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';

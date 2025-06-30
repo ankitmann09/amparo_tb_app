@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -15,6 +15,7 @@ import 'package:thingsboard_app/core/auth/login/bloc/auth_events.dart';
 import 'package:thingsboard_app/core/auth/login/bloc/auth_states.dart';
 import 'package:thingsboard_app/core/auth/login/choose_region_screen.dart';
 import 'package:thingsboard_app/core/auth/login/region.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/utils/ui/tb_text_styles.dart';
@@ -23,7 +24,7 @@ import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 import 'login_page_background.dart';
 
 class LoginPage extends TbPageWidget {
-  LoginPage(super.tbContext, {super.key});
+  LoginPage(TbContext tbContext, {super.key}) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
@@ -580,7 +581,7 @@ class _LoginPageState extends TbPageState<LoginPage>
                   ),
                 )
                 .values
-                ,
+                .toList(),
             const SizedBox(width: 8),
             Expanded(
               child: OutlinedButton(

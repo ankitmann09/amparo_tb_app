@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/locator.dart';
 import 'package:thingsboard_app/modules/dashboard/di/dashboards_di.dart';
@@ -12,9 +13,9 @@ import 'package:thingsboard_app/widgets/two_page_view.dart';
 
 class DashboardsPage extends TbContextWidget {
   DashboardsPage(
-    super.tbContext, {
+    TbContext tbContext, {
     super.key,
-  });
+  }) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _DashboardsPageState();

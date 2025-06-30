@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:intl/intl.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/alarm/alarms_base.dart';

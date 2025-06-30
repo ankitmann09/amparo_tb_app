@@ -5,6 +5,5 @@
 /// By exporting the TB Client here, we ensure a consistent name for the client
 /// throughout the project. This file will change rarely,
 /// thus minimizing merge conflicts.
-library;
 
 export 'package:thingsboard_pe_client/thingsboard_client.dart';

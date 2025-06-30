@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/asset/assets_page.dart';
 
 import 'asset_details_page.dart';
@@ -19,7 +20,7 @@ class AssetRoutes extends TbRoutes {
     },
   );
 
-  AssetRoutes(super.tbContext);
+  AssetRoutes(TbContext tbContext) : super(tbContext);
 
   @override
   void doRegisterRoutes(router) {

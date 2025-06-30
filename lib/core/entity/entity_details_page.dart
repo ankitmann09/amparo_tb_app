@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
@@ -19,7 +20,7 @@ abstract class EntityDetailsPage<T extends BaseData> extends TbContextWidget {
   final double? _appBarElevation;
 
   EntityDetailsPage(
-    super.tbContext, {
+    TbContext tbContext, {
     required String defaultTitle,
     required String entityId,
     String? subTitle,
@@ -32,7 +33,8 @@ abstract class EntityDetailsPage<T extends BaseData> extends TbContextWidget {
         _subTitle = subTitle,
         _showLoadingIndicator = showLoadingIndicator,
         _hideAppBar = hideAppBar,
-        _appBarElevation = appBarElevation;
+        _appBarElevation = appBarElevation,
+        super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _EntityDetailsPageState();
@@ -141,15 +143,23 @@ class _EntityDetailsPageState<T extends BaseData>
 abstract class ContactBasedDetailsPage<T extends ContactBased>
     extends EntityDetailsPage<T> {
   ContactBasedDetailsPage(
-    super.tbContext, {
-    required super.defaultTitle,
-    required super.entityId,
-    super.subTitle,
-    super.showLoadingIndicator,
-    super.hideAppBar,
-    super.appBarElevation,
+    TbContext tbContext, {
+    required String defaultTitle,
+    required String entityId,
+    String? subTitle,
+    bool showLoadingIndicator = true,
+    bool hideAppBar = false,
+    double? appBarElevation,
     super.key,
-  });
+  }) : super(
+          tbContext,
+          defaultTitle: defaultTitle,
+          entityId: entityId,
+          subTitle: subTitle,
+          showLoadingIndicator: showLoadingIndicator,
+          hideAppBar: hideAppBar,
+          appBarElevation: appBarElevation,
+        );
 
   @override
   Widget buildEntityDetails(BuildContext context, T entity) {

@@ -1,10 +1,13 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 
 class QrCodeScannerPage extends TbContextWidget {
-  QrCodeScannerPage(super.tbContext, {super.key});
+  QrCodeScannerPage(TbContext tbContext, {super.key}) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _QrCodeScannerPageState();
@@ -12,9 +15,22 @@ class QrCodeScannerPage extends TbContextWidget {
 
 class _QrCodeScannerPageState extends TbContextState<QrCodeScannerPage> {
   Timer? simulatedQrTimer;
+  QRViewController? controller;
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    } else if (Platform.isIOS) {
+      controller!.resumeCamera();
+    }
+  }
 
   @override
   void dispose() {
+    controller?.dispose();
     if (simulatedQrTimer != null) {
       simulatedQrTimer!.cancel();
     }
@@ -23,63 +39,104 @@ class _QrCodeScannerPageState extends TbContextState<QrCodeScannerPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Show "not supported" message on web
-    if (kIsWeb) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('QR Code Scanner')),
-        body: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.qr_code_scanner, size: 64, color: Colors.grey),
-              SizedBox(height: 16),
-              Text(
-                'QR code scanning is not supported on web.',
-                style: TextStyle(fontSize: 18),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Please use the mobile app for QR code scanning.',
-                style: TextStyle(fontSize: 14, color: Colors.grey),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    // For mobile/desktop, show a placeholder with simulated QR code
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('QR Code Scanner'),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-      ),
-      body: Container(
-        color: Colors.black,
-        child: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.qr_code_scanner, size: 100, color: Colors.white),
-              SizedBox(height: 24),
-              Text(
-                'Camera access required for QR scanning',
-                style: TextStyle(color: Colors.white, fontSize: 18),
-                textAlign: TextAlign.center,
+      body: Stack(
+        children: [
+          _buildQrView(context),
+          const Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: kToolbarHeight,
+            child: Center(
+              child: Text(
+                'Scan a code',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              SizedBox(height: 16),
-              Text(
-                'QR code scanner package is not available',
-                style: TextStyle(color: Colors.grey, fontSize: 14),
-                textAlign: TextAlign.center,
-              ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.white,
+              iconTheme: const IconThemeData(color: Colors.white),
+              elevation: 0,
+              actions: <Widget>[
+                IconButton(
+                  icon: FutureBuilder(
+                    future: controller?.getFlashStatus(),
+                    builder: (context, snapshot) {
+                      return Icon(
+                        snapshot.data == false
+                            ? Icons.flash_on
+                            : Icons.flash_off,
+                      );
+                    },
+                  ),
+                  onPressed: () async {
+                    await controller?.toggleFlash();
+                    setState(() {});
+                  },
+                  tooltip: 'Toggle flash',
+                ),
+                IconButton(
+                  icon: FutureBuilder(
+                    future: controller?.getCameraInfo(),
+                    builder: (context, snapshot) {
+                      return Icon(
+                        snapshot.data == CameraFacing.front
+                            ? Icons.camera_rear
+                            : Icons.camera_front,
+                      );
+                    },
+                  ),
+                  onPressed: () async {
+                    await controller?.flipCamera();
+                    setState(() {});
+                  },
+                  tooltip: 'Toggle camera',
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget _buildQrView(BuildContext context) {
+    // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
+    var scanArea = (MediaQuery.of(context).size.width < 400 ||
+            MediaQuery.of(context).size.height < 400)
+        ? 150.0
+        : 300.0;
+    // To ensure the Scanner view is properly sizes after rotation
+    // we need to listen for Flutter SizeChanged notification and update controller
+    return QRView(
+      key: qrKey,
+      onQRViewCreated: _onQRViewCreated,
+      overlay: QrScannerOverlayShape(
+        borderColor: Colors.red,
+        borderRadius: 10,
+        borderLength: 30,
+        borderWidth: 10,
+        cutOutSize: scanArea,
+      ),
+    );
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    setState(() {
+      this.controller = controller;
+    });
+    if (isPhysicalDevice) {
+      controller.scannedDataStream.take(1).listen((scanData) {
+        pop(scanData);
+      });
+    } else {
+      simulatedQrTimer = Timer(const Duration(seconds: 3), () {
+        pop(Barcode('test code', BarcodeFormat.qrcode, null));
+      });
+    }
   }
 }

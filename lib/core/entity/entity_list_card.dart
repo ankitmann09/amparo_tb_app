@@ -10,14 +10,15 @@ class EntityListCard<T> extends StatelessWidget {
 
   const EntityListCard(
     T entity, {
-    super.key,
+    Key? key,
     EntityTapFunction<T>? onEntityTap,
     required EntityCardWidgetBuilder<T> entityCardWidgetBuilder,
     bool listWidgetCard = false,
   })  : _entity = entity,
         _onEntityTap = onEntityTap,
         _entityCardWidgetBuilder = entityCardWidgetBuilder,
-        _listWidgetCard = listWidgetCard;
+        _listWidgetCard = listWidgetCard,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

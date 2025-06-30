@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
@@ -62,7 +63,8 @@ final Map<TwoFaProviderType, TwoFactorAuthProviderLoginData>
 };
 
 class TwoFactorAuthenticationPage extends TbPageWidget {
-  TwoFactorAuthenticationPage(super.tbContext, {super.key});
+  TwoFactorAuthenticationPage(TbContext tbContext, {super.key})
+      : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _TwoFactorAuthenticationPageState();
@@ -418,11 +420,11 @@ class _TwoFactorAuthenticationPageState
   ) {
     int maxLengthInput = 6;
     TextInputType keyboardType = TextInputType.number;
-    RegExp pattern = RegExp('[0-9]*');
+    String pattern = '[0-9]*';
 
     if (providerType == TwoFaProviderType.BACKUP_CODE) {
       maxLengthInput = 8;
-      pattern = RegExp('[0-9abcdef]*');
+      pattern = '[0-9abcdef]*';
       keyboardType = TextInputType.text;
     }
 

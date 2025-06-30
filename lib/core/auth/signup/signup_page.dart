@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:recaptcha_enterprise_flutter/recaptcha_action.dart';
 import 'package:recaptcha_enterprise_flutter/recaptcha_client.dart';
 import 'package:thingsboard_app/core/auth/login/bloc/bloc.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
 import 'package:thingsboard_app/core/auth/oauth2/app_secret_provider.dart';
 import 'package:thingsboard_app/core/auth/signup/signup_field_widget.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 
 class SignUpPage extends TbPageWidget {
-  SignUpPage(super.tbContext, {super.key});
+  SignUpPage(TbContext tbContext, {super.key}) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _SignUpPageState();

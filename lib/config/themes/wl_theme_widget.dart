@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 
@@ -12,10 +13,10 @@ class WlThemeWidget extends TbContextWidget {
   final WlThemedWidgetBuilder wlThemedWidgetBuilder;
 
   WlThemeWidget(
-    super.tbContext, {
+    TbContext tbContext, {
     required this.wlThemedWidgetBuilder,
     super.key,
-  });
+  }) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _WlThemeWidgetState();

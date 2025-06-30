@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 
 class FirstPageExceptionIndicator extends StatelessWidget {
   const FirstPageExceptionIndicator({
     required this.title,
     this.message,
     this.onTryAgain,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final String title;
   final String? message;

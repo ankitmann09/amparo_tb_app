@@ -1,10 +1,11 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:thingsboard_app/constants/assets_path.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
@@ -108,7 +109,7 @@ class DeviceQueryController extends PageKeyController<EntityDataQuery> {
   @override
   EntityDataQuery nextPageKey(EntityDataQuery pageKey) => pageKey.next();
 
-  void onSearchText(String searchText) {
+  onSearchText(String searchText) {
     value.pageKey.pageLink.page = 0;
     value.pageKey.pageLink.textSearch = searchText;
     notifyListeners();
@@ -121,12 +122,12 @@ class DeviceCard extends TbContextWidget {
   final bool displayImage;
 
   DeviceCard(
-    super.tbContext, {
+    TbContext tbContext, {
     super.key,
     required this.device,
     this.listWidgetCard = false,
     this.displayImage = false,
-  });
+  }) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _DeviceCardState();

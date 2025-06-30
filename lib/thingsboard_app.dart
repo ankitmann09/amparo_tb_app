@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
 import 'package:thingsboard_app/config/themes/tb_theme.dart';
@@ -9,7 +9,7 @@ import 'package:thingsboard_app/utils/services/layouts/i_layout_service.dart';
 import 'package:toastification/toastification.dart';
 
 class ThingsboardApp extends StatefulWidget {
-  const ThingsboardApp({super.key});
+  const ThingsboardApp({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ThingsBoardAppState();

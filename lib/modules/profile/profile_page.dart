@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/modules/profile/change_password_page.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
@@ -11,8 +12,9 @@ import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 class ProfilePage extends TbPageWidget {
   final bool _fullscreen;
 
-  ProfilePage(super.tbContext, {super.key, bool fullscreen = false})
-      : _fullscreen = fullscreen;
+  ProfilePage(TbContext tbContext, {super.key, bool fullscreen = false})
+      : _fullscreen = fullscreen,
+        super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _ProfilePageState();
@@ -146,7 +148,7 @@ class _ProfilePageState extends TbPageState<ProfilePage> {
     _isLoadingNotifier.value = false;
   }
 
-  void _setUser() {
+  _setUser() {
     _profileFormKey.currentState?.patchValue({
       'email': _currentUser!.email,
       'firstName': _currentUser!.firstName ?? '',
@@ -185,7 +187,7 @@ class _ProfilePageState extends TbPageState<ProfilePage> {
     }
   }
 
-  Future<void> _changePassword() async {
+  _changePassword() async {
     var res = await tbContext
         .showFullScreenDialog<bool>(ChangePasswordPage(tbContext));
     if (res == true) {

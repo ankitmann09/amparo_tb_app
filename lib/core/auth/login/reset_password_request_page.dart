@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
 import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 
 class ResetPasswordRequestPage extends TbPageWidget {
-  ResetPasswordRequestPage(super.tbContext, {super.key});
+  ResetPasswordRequestPage(TbContext tbContext, {super.key}) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _ResetPasswordRequestPageState();

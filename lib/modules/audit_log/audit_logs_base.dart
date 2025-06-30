@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
 import 'package:thingsboard_app/modules/audit_log/audit_log_details_page.dart';
@@ -84,7 +85,8 @@ mixin AuditLogsBase on EntitiesBase<AuditLog, TimePageLink> {
 class AuditLogCard extends TbContextWidget {
   final AuditLog auditLog;
 
-  AuditLogCard(super.tbContext, {super.key, required this.auditLog});
+  AuditLogCard(TbContext tbContext, {super.key, required this.auditLog})
+      : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _AuditLogCardState();
@@ -252,7 +254,7 @@ class _AuditLogCardState extends TbContextState<AuditLogCard> {
     );
   }
 
-  void _auditLogDetails(AuditLog auditLog) {
+  _auditLogDetails(AuditLog auditLog) {
     tbContext.showFullScreenDialog(AuditLogDetailsPage(tbContext, auditLog));
   }
 }

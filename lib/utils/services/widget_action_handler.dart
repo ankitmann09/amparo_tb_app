@@ -8,18 +8,10 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/device/provisioning/route/esp_provisioning_route.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
-// Simple stub for Barcode class when qr_code_scanner is not available
-class Barcode {
-  final String? code;
-  final String format;
-  final String? rawBytes;
-
-  Barcode(this.code, this.format, this.rawBytes);
-}
 
 class WidgetMobileActionResult<T extends MobileActionResult> {
   T? result;

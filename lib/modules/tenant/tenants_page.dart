@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
@@ -8,7 +9,8 @@ import 'tenants_list.dart';
 class TenantsPage extends TbPageWidget {
   final bool searchMode;
 
-  TenantsPage(super.tbContext, {super.key, this.searchMode = false});
+  TenantsPage(TbContext tbContext, {super.key, this.searchMode = false})
+      : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _TenantsPageState();

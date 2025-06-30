@@ -18,13 +18,14 @@ class FadeOpenPageTransitionsBuilder extends PageTransitionsBuilder {
 
 class FadeOpenPageTransition extends StatelessWidget {
   FadeOpenPageTransition({
-    super.key,
+    Key? key,
     required Animation<double>
         routeAnimation, // The route's linear 0.0 - 1.0 animation.
     required this.child,
   })  : _positionAnimation =
             routeAnimation.drive(_leftRightTween.chain(_fastOutSlowInTween)),
-        _opacityAnimation = routeAnimation.drive(_easeInTween);
+        _opacityAnimation = routeAnimation.drive(_easeInTween),
+        super(key: key);
 
   // Fractional offset from 1/4 screen below the top to fully on screen.
   static final Tween<Offset> _leftRightTween = Tween<Offset>(

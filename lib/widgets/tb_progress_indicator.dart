@@ -11,13 +11,17 @@ class TbProgressIndicator extends ProgressIndicator {
 
   const TbProgressIndicator(
     this.tbContext, {
-    super.key,
+    Key? key,
     this.size = 36.0,
-    super.valueColor,
-    super.semanticsLabel,
-    super.semanticsValue,
+    Animation<Color?>? valueColor,
+    String? semanticsLabel,
+    String? semanticsValue,
   }) : super(
+          key: key,
           value: null,
+          valueColor: valueColor,
+          semanticsLabel: semanticsLabel,
+          semanticsValue: semanticsValue,
         );
 
   @override

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:thingsboard_app/modules/audit_log/audit_logs_base.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
@@ -11,7 +12,8 @@ import 'package:thingsboard_app/widgets/tb_app_bar.dart';
 class AuditLogDetailsPage extends TbContextWidget {
   final AuditLog auditLog;
 
-  AuditLogDetailsPage(super.tbContext, this.auditLog, {super.key});
+  AuditLogDetailsPage(TbContext tbContext, this.auditLog, {super.key})
+      : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _AuditLogDetailsPageState();

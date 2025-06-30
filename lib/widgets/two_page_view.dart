@@ -4,7 +4,7 @@ import 'package:preload_page_view/preload_page_view.dart';
 class TwoPageViewController {
   _TwoPageViewState? _state;
 
-  void setTransitionIndexedStackState(_TwoPageViewState state) {
+  setTransitionIndexedStackState(_TwoPageViewState state) {
     _state = state;
   }
 
@@ -32,12 +32,12 @@ class TwoPageView extends StatefulWidget {
   final TwoPageViewController? controller;
 
   const TwoPageView({
-    super.key,
+    Key? key,
     required this.first,
     required this.second,
     this.controller,
     this.duration = const Duration(milliseconds: 250),
-  });
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TwoPageViewState();

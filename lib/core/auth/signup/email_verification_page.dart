@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thingsboard_app/constants/assets_path.dart';
 import 'package:thingsboard_app/core/auth/login/login_page_background.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
 
 class EmailVerificationPage extends TbPageWidget {
   final String _email;
 
-  EmailVerificationPage(super.tbContext, {super.key, required String email})
-      : _email = email;
+  EmailVerificationPage(TbContext tbContext, {super.key, required String email})
+      : _email = email,
+        super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _EmailVerificationPageState();

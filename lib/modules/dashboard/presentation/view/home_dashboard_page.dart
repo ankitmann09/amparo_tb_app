@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/modules/dashboard/presentation/widgets/dashboard_widget.dart';
 import 'package:thingsboard_app/modules/dashboard/presentation/widgets/dashboards_appbar.dart';
@@ -7,7 +8,8 @@ import 'package:thingsboard_app/thingsboard_client.dart';
 class HomeDashboardPage extends TbContextWidget {
   final HomeDashboardInfo dashboard;
 
-  HomeDashboardPage(super.tbContext, this.dashboard, {super.key});
+  HomeDashboardPage(TbContext tbContext, this.dashboard, {super.key})
+      : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _HomeDashboardState();

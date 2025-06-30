@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/core/entity/entities_base.dart';
 
 import 'tenants_list.dart';
 
 class TenantsWidget extends TbContextWidget {
-  TenantsWidget(super.tbContext, {super.key});
+  TenantsWidget(TbContext tbContext, {super.key}) : super(tbContext);
 
   @override
   State<StatefulWidget> createState() => _TenantsWidgetState();

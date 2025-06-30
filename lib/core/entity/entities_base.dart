@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:thingsboard_app/l10n/messages.dart';
+import 'package:flutter_gen/gen_l10n/messages.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
@@ -197,7 +197,7 @@ class PageLinkController extends PageKeyController<PageLink> {
   @override
   PageLink nextPageKey(PageLink pageKey) => pageKey.nextPageLink();
 
-  void onSearchText(String searchText) {
+  onSearchText(String searchText) {
     value.pageKey.page = 0;
     value.pageKey.textSearch = searchText;
     notifyListeners();
@@ -218,7 +218,7 @@ class TimePageLinkController extends PageKeyController<TimePageLink> {
   @override
   TimePageLink nextPageKey(TimePageLink pageKey) => pageKey.nextPageLink();
 
-  void onSearchText(String searchText) {
+  onSearchText(String searchText) {
     value.pageKey.page = 0;
     value.pageKey.textSearch = searchText;
     notifyListeners();
@@ -231,11 +231,11 @@ abstract class BaseEntitiesWidget<T, P> extends TbContextWidget
   final PageKeyController<P> pageKeyController;
 
   BaseEntitiesWidget(
-    super.tbContext,
+    TbContext tbContext,
     this.pageKeyController, {
     this.searchMode = false,
     super.key,
-  });
+  }) : super(tbContext);
 
   @override
   Widget? buildHeading(BuildContext context) => searchMode
