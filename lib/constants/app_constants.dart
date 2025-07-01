@@ -3,6 +3,6 @@ abstract class ThingsboardAppConstants {
   static const thingsboardOAuth2CallbackUrlScheme =
       'org.thingsboard.pe.app.auth';
 
-  static const thingsboardIOSAppSecret = 'ZlZzRkZYanI5cHNaOWsycGpUSlFLeWRNSXZpeEQzb2ozeG85ek9mNTI5dFQ1YTRrZ3hNNWJoQmF3Um13NmRvMQ==';
-  static const thingsboardAndroidAppSecret = 'OHBzdkZpUldtN0IzU25NdUhhbVdQQ2lFTTA3SWg0WHV5ODBBZzJOQ2JDU3RkWnQ0RzIxT0xmOUw1RDREUmpnOA==';
+  static const thingsboardIOSAppSecret = 'WkxBcEZ6TjNYM2NlakQ3bXJTTnI3TGp5WTFoT3U4STNBTjZFc09odmdlNFdQd';
+  static const thingsboardAndroidAppSecret = 'd0NoWk5DanBNR3dGY3VBcENEZDN1T1h0bDJZSXZVQkRIbGpCZHhhemFxb2thOUhYZFZkb3VaVllDZlhqRWZQUw==';
 }
